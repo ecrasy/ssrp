@@ -40,7 +40,7 @@ define Package/v2raya
   DEPENDS:=$(GO_ARCH_DEPENDS) \
     +ca-bundle \
     +kmod-nft-tproxy \
-    +xray-core
+    +v2ray-core
   URL:=https://v2raya.org
 endef
 
