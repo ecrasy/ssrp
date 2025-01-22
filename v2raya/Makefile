@@ -19,6 +19,7 @@ PKG_MAINTAINER:=Tianling Shen <cnsztl@immortalwrt.org>
 
 PKG_BUILD_DEPENDS:=golang/host
 PKG_BUILD_PARALLEL:=1
+PKG_USE_MIPS16:=0
 PKG_BUILD_FLAGS:=no-mips16
 
 GO_PKG:=github.com/v2rayA/v2rayA
@@ -40,7 +41,7 @@ define Package/v2raya
   DEPENDS:=$(GO_ARCH_DEPENDS) \
     +ca-bundle \
     +kmod-nft-tproxy \
-    +v2ray-core
+    +xray-core
   URL:=https://v2raya.org
 endef
 
