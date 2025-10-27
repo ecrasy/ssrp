@@ -23,6 +23,7 @@ PKG_MAINTAINER:=GreaterFire
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
+include ./boost-version.mk
 
 TARGET_CXXFLAGS += -Wall -Wextra
 TARGET_CXXFLAGS += $(FPIC)
@@ -50,13 +51,15 @@ CMAKE_OPTIONS += \
 	-DBoost_NO_BOOST_CMAKE=ON
 
 define Package/trojan
-	SECTION:=net
-	CATEGORY:=Network
-	TITLE:=An unidentifiable mechanism that helps you bypass GFW
-	URL:=https://github.com/trojan-gfw/trojan
-	DEPENDS:= \
-		+libpthread +libstdcpp +libopenssl \
-		+boost +boost-system +boost-program_options +boost-date_time
+  SECTION:=net
+  CATEGORY:=Network
+  SUBMENU:=Web Servers/Proxies
+  TITLE:=An unidentifiable mechanism that helps you bypass GFW
+  URL:=https://github.com/trojan-gfw/trojan
+  DEPENDS:= \
+    +libpthread +libstdcpp +libopenssl \
+    +boost +boost-program_options +boost-date_time \
+    $(if $(filter y,$(NEED_BOOST_SYSTEM)),,+boost-system)
 endef
 
 define Package/trojan/install
