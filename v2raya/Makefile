@@ -5,12 +5,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=v2rayA
-PKG_VERSION:=2.2.7.3
+PKG_VERSION:=2.2.7.5
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://codeload.github.com/v2rayA/v2rayA/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=4b36275dff287d8cf03ee8fa5331d731593f35020459a8ea0ff925e8496a52cf
+PKG_HASH:=d0daccace51572d730fb710f7df190beed47d51ec1091d2fba38719b9417b385
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)/service
 
 PKG_LICENSE:=AGPL-3.0-only
@@ -27,7 +27,7 @@ GO_PKG_LDFLAGS_X:= \
 	$(GO_PKG)/core/iptables.TproxyNotSkipBr=true
 
 include $(INCLUDE_DIR)/package.mk
-include $(TOPDIR)/feeds/packages/lang/golang/golang-package.mk
+include ../../lang/golang/golang-package.mk
 
 TAR_OPTIONS+= --strip-components 1
 TAR_CMD=$(HOST_TAR) -C $(1)/.. $(TAR_OPTIONS)
@@ -40,7 +40,7 @@ define Package/v2raya
   DEPENDS:=$(GO_ARCH_DEPENDS) \
     +ca-bundle \
     +kmod-nft-tproxy \
-    +v2ray-core
+    +xray-core
   URL:=https://v2raya.org
 endef
 
@@ -59,7 +59,7 @@ define Download/v2raya-web
 	URL:=https://github.com/v2rayA/v2rayA/releases/download/v$(PKG_VERSION)/
 	URL_FILE:=web.tar.gz
 	FILE:=$(WEB_FILE)
-	HASH:=99e789fa7cbfe9f6bc49afa8365556dff6d6c664e6136b045dd7f43322d0de7f
+	HASH:=89bff9248a9cba8b7bda6e1202ac565dbca377319423868835235deddbfb182a
 endef
 
 define Build/Prepare
